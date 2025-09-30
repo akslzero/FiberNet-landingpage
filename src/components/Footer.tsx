@@ -24,12 +24,6 @@ const Footer = () => {
               <div className="p-2 rounded-lg bg-primary/10 hover:bg-primary/20 transition-smooth cursor-pointer">
                 <Instagram className="w-5 h-5 text-primary" />
               </div>
-              <div className="p-2 rounded-lg bg-primary/10 hover:bg-primary/20 transition-smooth cursor-pointer">
-                <Twitter className="w-5 h-5 text-primary" />
-              </div>
-              <div className="p-2 rounded-lg bg-primary/10 hover:bg-primary/20 transition-smooth cursor-pointer">
-                <Youtube className="w-5 h-5 text-primary" />
-              </div>
             </div>
           </div>
 
@@ -38,7 +32,6 @@ const Footer = () => {
             <h3 className="text-lg font-semibold">Layanan</h3>
             <ul className="space-y-2 text-muted-foreground">
               <li className="hover:text-primary transition-smooth cursor-pointer">Internet Rumah</li>
-              <li className="hover:text-primary transition-smooth cursor-pointer">Internet Bisnis</li>
               <li className="hover:text-primary transition-smooth cursor-pointer">Dedicated Line</li>
               <li className="hover:text-primary transition-smooth cursor-pointer">Colocation</li>
             </ul>

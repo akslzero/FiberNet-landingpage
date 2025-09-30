@@ -19,25 +19,60 @@ const ContactForm = () => {
     message: ""
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
-    // Simulate form submission
-    toast({
-      title: "Pendaftaran Berhasil!",
-      description: "Tim kami akan menghubungi Anda dalam 24 jam untuk proses instalasi.",
-    });
-    
-    // Reset form
-    setFormData({
-      name: "",
-      email: "",
-      phone: "",
-      address: "",
-      package: "",
-      message: ""
-    });
-  };
+
+    // Bikin message buat Telegram
+    const message = `
+    Nama: ${formData.name}
+    Telepon: ${formData.phone}
+    Email: ${formData.email}
+    Alamat: ${formData.address}
+    Paket: ${formData.package}
+    Pesan Tambahan: ${formData.message || "-"}
+      `;
+
+      const botToken = "8100053649:AAGOaTrfMIK7k_CG4XDW__5rMZ8gQ5SIlTA"; // ganti sama token bot kamu
+      const chatId = "8165187573"; // ganti sama chat id kamu
+
+      try {
+        const res = await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            chat_id: chatId,
+            text: message
+          })
+        });
+
+        const data = await res.json();
+
+        if (data.ok) {
+          // Tampilkan toast sukses
+          toast({
+            title: "Pendaftaran Berhasil!",
+            description: "Tim kami akan menghubungi Anda dalam 24 jam untuk proses instalasi.",
+          });
+
+          // Reset form
+          setFormData({
+            name: "",
+            email: "",
+            phone: "",
+            address: "",
+            package: "",
+            message: ""
+          });
+        } else {
+          alert("Gagal kirim data ke Telegram.");
+          console.error(data);
+        }
+      } catch (err) {
+        console.error(err);
+        alert("Terjadi error saat mengirim data ke Telegram.");
+      }
+    };
+
 
   const handleInputChange = (field: string, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }));
@@ -73,7 +108,7 @@ const ContactForm = () => {
                       id="name"
                       value={formData.name}
                       onChange={(e) => handleInputChange("name", e.target.value)}
-                      placeholder="John Doe"
+                      placeholder="Budi Santoso"
                       required
                     />
                   </div>
@@ -97,7 +132,7 @@ const ContactForm = () => {
                     type="email"
                     value={formData.email}
                     onChange={(e) => handleInputChange("email", e.target.value)}
-                    placeholder="john@example.com"
+                    placeholder="Budi@gmail.com"
                     required
                   />
                 </div>
@@ -120,9 +155,9 @@ const ContactForm = () => {
                       <SelectValue placeholder="Pilih paket internet" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="starter">Starter - 50 Mbps</SelectItem>
-                      <SelectItem value="family">Family - 100 Mbps</SelectItem>
-                      <SelectItem value="pro">Pro - 300 Mbps</SelectItem>
+                      <SelectItem value="starter">Starter - 10 Mbps</SelectItem>
+                      <SelectItem value="family">Family - 30 Mbps</SelectItem>
+                      <SelectItem value="pro">Pro - 50 Mbps</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
@@ -193,8 +228,8 @@ const ContactForm = () => {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-lg font-semibold">Senin - Minggu</p>
-                <p className="text-muted-foreground">24 jam (Customer Service)</p>
+                <p className="text-lg font-semibold">Senin - Jumat</p>
+                <p className="text-muted-foreground">08:00 - 22:00 (Customer Service)</p>
                 <p className="text-muted-foreground">08:00 - 17:00 (Instalasi)</p>
               </CardContent>
             </Card>

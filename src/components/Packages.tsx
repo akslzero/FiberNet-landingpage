@@ -6,13 +6,13 @@ import { Check, Wifi, Zap, Shield } from "lucide-react";
 const packages = [
   {
     name: "Starter",
-    speed: "50 Mbps",
-    price: "299.000",
-    originalPrice: "399.000",
+    speed: "10 Mbps",
+    price: "99.000",
+    originalPrice: "199.000",
     description: "Cocok untuk browsing dan streaming basic",
     features: [
-      "Download hingga 50 Mbps",
-      "Upload hingga 25 Mbps", 
+      "Download hingga 10 Mbps",
+      "Upload hingga 5 Mbps", 
       "Unlimited kuota",
       "Gratis instalasi",
       "Modem WiFi gratis"
@@ -22,13 +22,13 @@ const packages = [
   },
   {
     name: "Family",
-    speed: "100 Mbps", 
-    price: "499.000",
-    originalPrice: "699.000",
+    speed: "30 Mbps", 
+    price: "215.000",
+    originalPrice: "299.000",
     description: "Ideal untuk keluarga dengan banyak device",
     features: [
-      "Download hingga 100 Mbps",
-      "Upload hingga 50 Mbps",
+      "Download hingga 30 Mbps",
+      "Upload hingga 15 Mbps",
       "Unlimited kuota", 
       "Gratis instalasi",
       "Modem WiFi AC gratis",
@@ -39,13 +39,13 @@ const packages = [
   },
   {
     name: "Pro",
-    speed: "300 Mbps",
-    price: "899.000", 
-    originalPrice: "1.199.000",
+    speed: "50 Mbps",
+    price: "285.000", 
+    originalPrice: "399.000",
     description: "Untuk gaming dan streaming 4K tanpa lag",
     features: [
-      "Download hingga 300 Mbps",
-      "Upload hingga 150 Mbps",
+      "Download hingga 50 Mbps",
+      "Upload hingga 25 Mbps",
       "Unlimited kuota",
       "Gratis instalasi", 
       "Gaming router gratis",
