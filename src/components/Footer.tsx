@@ -54,16 +54,16 @@ const Footer = () => {
             <ul className="space-y-2 text-muted-foreground">
               <li>
                 <strong>Telepon:</strong><br />
-                0800-1234-5678
+                0881-8618-157
               </li>
               <li>
                 <strong>Email:</strong><br />
-                info@fibernet.id
+                Fibernet-klaten@gmail.com
               </li>
               <li>
                 <strong>Alamat:</strong><br />
-                Jl. Teknologi No. 123<br />
-                Jakarta Selatan, DKI Jakarta
+                Jl. Dewi Sartika No.16, RT.03/RW.04<br />
+                Tegalklaten, Klaten, Kec. Klaten Tengah, Kabupaten Klaten, Jawa Tengah 57411
               </li>
             </ul>
           </div>

@@ -22,56 +22,36 @@ const ContactForm = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Bikin message buat Telegram
-    const message = `
-    Nama: ${formData.name}
-    Telepon: ${formData.phone}
-    Email: ${formData.email}
-    Alamat: ${formData.address}
-    Paket: ${formData.package}
-    Pesan Tambahan: ${formData.message || "-"}
-      `;
+    try {
+      const res = await fetch("http://localhost:5000/send-to-telegram", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
 
-      const botToken = "8100053649:AAGOaTrfMIK7k_CG4XDW__5rMZ8gQ5SIlTA"; // ganti sama token bot kamu
-      const chatId = "8165187573"; // ganti sama chat id kamu
+      const data = await res.json();
 
-      try {
-        const res = await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            chat_id: chatId,
-            text: message
-          })
+      if (res.ok) {
+        alert("Pesan berhasil dikirim ke Telegram!");
+
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          address: "",
+          package: "",
+          message: ""
         });
-
-        const data = await res.json();
-
-        if (data.ok) {
-          // Tampilkan toast sukses
-          toast({
-            title: "Pendaftaran Berhasil!",
-            description: "Tim kami akan menghubungi Anda dalam 24 jam untuk proses instalasi.",
-          });
-
-          // Reset form
-          setFormData({
-            name: "",
-            email: "",
-            phone: "",
-            address: "",
-            package: "",
-            message: ""
-          });
-        } else {
-          alert("Gagal kirim data ke Telegram.");
-          console.error(data);
-        }
-      } catch (err) {
-        console.error(err);
-        alert("Terjadi error saat mengirim data ke Telegram.");
+      } else {
+        alert("Gagal kirim ke Telegram. Cek konsol.");
+        console.error(data.error);
       }
-    };
+    } catch (err) {
+      console.error(err);
+      alert("Terjadi error saat mengirim.");
+    }
+  };
+
 
 
   const handleInputChange = (field: string, value: string) => {
@@ -189,7 +169,7 @@ const ContactForm = () => {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-lg font-semibold">0800-1234-5678</p>
+                <p className="text-lg font-semibold">0881-8618-157</p>
                 <p className="text-muted-foreground">Hubungi kami untuk konsultasi gratis</p>
               </CardContent>
             </Card>
@@ -202,7 +182,7 @@ const ContactForm = () => {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-lg font-semibold">info@internetprovider.com</p>
+                <p className="text-lg font-semibold">Fibernet-klaten@gmail.com</p>
                 <p className="text-muted-foreground">Customer service siap membantu</p>
               </CardContent>
             </Card>
@@ -215,8 +195,8 @@ const ContactForm = () => {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-lg font-semibold">Jl. Teknologi No. 123</p>
-                <p className="text-muted-foreground">Jakarta Selatan, DKI Jakarta 12345</p>
+                <p className="text-lg font-semibold">Jl. Dewi Sartika No.16, RT.03/RW.04</p>
+                <p className="text-muted-foreground">Tegalklaten, Klaten, Kec. Klaten Tengah, Kabupaten Klaten, Jawa Tengah 57411</p>
               </CardContent>
             </Card>
 
