@@ -1,5 +1,12 @@
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Check, Wifi, Zap, Shield } from "lucide-react";
 
@@ -12,54 +19,51 @@ const packages = [
     description: "Cocok untuk browsing dan streaming basic",
     features: [
       "Download hingga 10 Mbps",
-      "Upload hingga 5 Mbps", 
+      "Upload hingga 5 Mbps",
       "Unlimited kuota",
       "Gratis instalasi",
-      "Modem WiFi gratis"
+      "Modem WiFi gratis",
     ],
-    popular: false,
-    icon: Wifi
+    popular: true,
+    icon: Wifi,
   },
   {
     name: "Family",
-    speed: "30 Mbps", 
+    speed: "30 Mbps",
     price: "215.000",
     originalPrice: "299.000",
     description: "Ideal untuk keluarga dengan banyak device",
     features: [
       "Download hingga 30 Mbps",
       "Upload hingga 15 Mbps",
-      "Unlimited kuota", 
+      "Unlimited kuota",
       "Gratis instalasi",
       "Modem WiFi AC gratis",
-      "Prioritas support"
     ],
-    popular: true,
-    icon: Zap
+    popular: false,
+    icon: Zap,
   },
   {
     name: "Pro",
     speed: "50 Mbps",
-    price: "285.000", 
+    price: "285.000",
     originalPrice: "399.000",
     description: "Untuk gaming dan streaming 4K tanpa lag",
     features: [
       "Download hingga 50 Mbps",
       "Upload hingga 25 Mbps",
       "Unlimited kuota",
-      "Gratis instalasi", 
+      "Gratis instalasi",
       "Gaming router gratis",
-      "Dedicated support",
-      "Static IP"
     ],
     popular: false,
-    icon: Shield
-  }
+    icon: Shield,
+  },
 ];
 
 const Packages = () => {
   const handleSelectPackage = (packageName: string) => {
-    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+    document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
@@ -70,20 +74,21 @@ const Packages = () => {
             Pilih Paket <span className="gradient-text">Terbaik</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Kami menyediakan berbagai pilihan paket internet yang sesuai dengan kebutuhan dan budget Anda
+            Kami menyediakan berbagai pilihan paket internet yang sesuai dengan
+            kebutuhan dan budget Anda
           </p>
         </div>
-        
+
         <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {packages.map((pkg, index) => {
             const IconComponent = pkg.icon;
             return (
-              <Card 
-                key={index} 
+              <Card
+                key={index}
                 className={`relative transition-smooth hover:scale-105 ${
-                  pkg.popular 
-                    ? 'border-primary card-glow' 
-                    : 'border-border hover:border-primary/50'
+                  pkg.popular
+                    ? "border-primary card-glow"
+                    : "border-border hover:border-primary/50"
                 }`}
               >
                 {pkg.popular && (
@@ -91,20 +96,24 @@ const Packages = () => {
                     Paling Populer
                   </Badge>
                 )}
-                
+
                 <CardHeader className="text-center">
                   <div className="mx-auto mb-4 p-4 rounded-full bg-primary/10 w-fit">
                     <IconComponent className="w-8 h-8 text-primary" />
                   </div>
                   <CardTitle className="text-2xl">{pkg.name}</CardTitle>
                   <CardDescription>{pkg.description}</CardDescription>
-                  
+
                   <div className="space-y-2">
-                    <div className="text-4xl font-bold gradient-text">{pkg.speed}</div>
+                    <div className="text-4xl font-bold gradient-text">
+                      {pkg.speed}
+                    </div>
                     <div className="space-y-1">
                       <div className="text-3xl font-bold">
                         Rp {pkg.price}
-                        <span className="text-sm font-normal text-muted-foreground">/bulan</span>
+                        <span className="text-sm font-normal text-muted-foreground">
+                          /bulan
+                        </span>
                       </div>
                       <div className="text-sm text-muted-foreground line-through">
                         Rp {pkg.originalPrice}
@@ -112,21 +121,24 @@ const Packages = () => {
                     </div>
                   </div>
                 </CardHeader>
-                
+
                 <CardContent>
                   <ul className="space-y-3">
                     {pkg.features.map((feature, featureIndex) => (
-                      <li key={featureIndex} className="flex items-center gap-3">
+                      <li
+                        key={featureIndex}
+                        className="flex items-center gap-3"
+                      >
                         <Check className="w-5 h-5 text-primary flex-shrink-0" />
                         <span className="text-sm">{feature}</span>
                       </li>
                     ))}
                   </ul>
                 </CardContent>
-                
+
                 <CardFooter>
-                  <Button 
-                    variant={pkg.popular ? "hero" : "default"} 
+                  <Button
+                    variant={pkg.popular ? "hero" : "default"}
                     className="w-full"
                     onClick={() => handleSelectPackage(pkg.name)}
                   >

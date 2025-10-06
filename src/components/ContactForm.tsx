@@ -1,10 +1,22 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
 import { Phone, Mail, MapPin, Clock } from "lucide-react";
 
@@ -16,46 +28,47 @@ const ContactForm = () => {
     phone: "",
     address: "",
     package: "",
-    message: ""
+    message: "",
   });
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
+    const botToken = import.meta.env.VITE_TELEGRAM_BOT_TOKEN;
+    const chatId = import.meta.env.VITE_TELEGRAM_CHAT_ID;
+
+    const message = `
+📬 *Pendaftaran Baru!*
+👤 Nama: ${formData.name}
+📱 Telepon: ${formData.phone}
+📧 Email: ${formData.email}
+🏠 Alamat: ${formData.address}
+📦 Paket: ${formData.package}
+📝 Pesan: ${formData.message || "-"}
+  `;
+
     try {
-      const res = await fetch("http://localhost:5000/send-to-telegram", {
+      await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          chat_id: chatId,
+          text: message,
+          parse_mode: "Markdown",
+        }),
       });
 
-      const data = await res.json();
-
-      if (res.ok) {
-        alert("Pesan berhasil dikirim ke Telegram!");
-
-        setFormData({
-          name: "",
-          email: "",
-          phone: "",
-          address: "",
-          package: "",
-          message: ""
-        });
-      } else {
-        alert("Gagal kirim ke Telegram. Cek konsol.");
-        console.error(data.error);
-      }
-    } catch (err) {
-      console.error(err);
-      alert("Terjadi error saat mengirim.");
+      alert("Data berhasil dikirim ke Telegram! 🚀");
+    } catch (error) {
+      console.error("Gagal kirim ke Telegram:", error);
+      alert("Ups, gagal kirim pesan 😅");
     }
   };
 
-
-
   const handleInputChange = (field: string, value: string) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
+    setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
   return (
@@ -87,7 +100,9 @@ const ContactForm = () => {
                     <Input
                       id="name"
                       value={formData.name}
-                      onChange={(e) => handleInputChange("name", e.target.value)}
+                      onChange={(e) =>
+                        handleInputChange("name", e.target.value)
+                      }
                       placeholder="Budi Santoso"
                       required
                     />
@@ -98,7 +113,9 @@ const ContactForm = () => {
                       id="phone"
                       type="tel"
                       value={formData.phone}
-                      onChange={(e) => handleInputChange("phone", e.target.value)}
+                      onChange={(e) =>
+                        handleInputChange("phone", e.target.value)
+                      }
                       placeholder="08123456789"
                       required
                     />
@@ -122,7 +139,9 @@ const ContactForm = () => {
                   <Textarea
                     id="address"
                     value={formData.address}
-                    onChange={(e) => handleInputChange("address", e.target.value)}
+                    onChange={(e) =>
+                      handleInputChange("address", e.target.value)
+                    }
                     placeholder="Jl. Contoh No. 123, Kelurahan, Kecamatan, Kota"
                     required
                   />
@@ -130,7 +149,12 @@ const ContactForm = () => {
 
                 <div className="space-y-2">
                   <Label htmlFor="package">Pilih Paket</Label>
-                  <Select value={formData.package} onValueChange={(value) => handleInputChange("package", value)}>
+                  <Select
+                    value={formData.package}
+                    onValueChange={(value) =>
+                      handleInputChange("package", value)
+                    }
+                  >
                     <SelectTrigger>
                       <SelectValue placeholder="Pilih paket internet" />
                     </SelectTrigger>
@@ -147,12 +171,19 @@ const ContactForm = () => {
                   <Textarea
                     id="message"
                     value={formData.message}
-                    onChange={(e) => handleInputChange("message", e.target.value)}
+                    onChange={(e) =>
+                      handleInputChange("message", e.target.value)
+                    }
                     placeholder="Ada pertanyaan khusus atau permintaan instalasi?"
                   />
                 </div>
 
-                <Button type="submit" variant="hero" size="lg" className="w-full">
+                <Button
+                  type="submit"
+                  variant="hero"
+                  size="lg"
+                  className="w-full"
+                >
                   Daftar Sekarang
                 </Button>
               </form>
@@ -170,7 +201,9 @@ const ContactForm = () => {
               </CardHeader>
               <CardContent>
                 <p className="text-lg font-semibold">0881-8618-157</p>
-                <p className="text-muted-foreground">Hubungi kami untuk konsultasi gratis</p>
+                <p className="text-muted-foreground">
+                  Hubungi kami untuk konsultasi gratis
+                </p>
               </CardContent>
             </Card>
 
@@ -182,8 +215,12 @@ const ContactForm = () => {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-lg font-semibold">Fibernet-klaten@gmail.com</p>
-                <p className="text-muted-foreground">Customer service siap membantu</p>
+                <p className="text-lg font-semibold">
+                  FibernetKlaten@gmail.com
+                </p>
+                <p className="text-muted-foreground">
+                  Customer service siap membantu
+                </p>
               </CardContent>
             </Card>
 
@@ -195,8 +232,13 @@ const ContactForm = () => {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-lg font-semibold">Jl. Dewi Sartika No.16, RT.03/RW.04</p>
-                <p className="text-muted-foreground">Tegalklaten, Klaten, Kec. Klaten Tengah, Kabupaten Klaten, Jawa Tengah 57411</p>
+                <p className="text-lg font-semibold">
+                  Jl. Dewi Sartika No.16, RT.03/RW.04
+                </p>
+                <p className="text-muted-foreground">
+                  Tegalklaten, Klaten, Kec. Klaten Tengah, Kabupaten Klaten,
+                  Jawa Tengah 57411
+                </p>
               </CardContent>
             </Card>
 
@@ -209,8 +251,12 @@ const ContactForm = () => {
               </CardHeader>
               <CardContent>
                 <p className="text-lg font-semibold">Senin - Jumat</p>
-                <p className="text-muted-foreground">08:00 - 22:00 (Customer Service)</p>
-                <p className="text-muted-foreground">08:00 - 17:00 (Instalasi)</p>
+                <p className="text-muted-foreground">
+                  08:00 - 22:00 (Customer Service)
+                </p>
+                <p className="text-muted-foreground">
+                  08:00 - 17:00 (Instalasi)
+                </p>
               </CardContent>
             </Card>
           </div>
