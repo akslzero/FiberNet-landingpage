@@ -60,10 +60,10 @@ const ContactForm = () => {
         }),
       });
 
-      alert("Data berhasil dikirim ke Telegram! 🚀");
+      alert("Data berhasil dikirim!");
     } catch (error) {
-      console.error("Gagal kirim ke Telegram:", error);
-      alert("Ups, gagal kirim pesan 😅");
+      console.error("Gagal kirim:", error);
+      alert("Ups, gagal kirim pesan");
     }
   };
 

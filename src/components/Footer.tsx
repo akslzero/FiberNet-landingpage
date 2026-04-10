@@ -14,8 +14,8 @@ const Footer = () => {
               <span className="text-xl font-bold gradient-text">FiberNet</span>
             </div>
             <p className="text-muted-foreground">
-              Penyedia layanan internet fiber optik terdepan di Indonesia dengan komitmen 
-              memberikan koneksi tercepat dan terstabil.
+              Penyedia layanan internet fiber optik terdepan di Indonesia dengan
+              komitmen memberikan koneksi tercepat dan terstabil.
             </p>
             <div className="flex gap-4">
               <div className="p-2 rounded-lg bg-primary/10 hover:bg-primary/20 transition-smooth cursor-pointer">
@@ -31,9 +31,15 @@ const Footer = () => {
           <div className="space-y-4">
             <h3 className="text-lg font-semibold">Layanan</h3>
             <ul className="space-y-2 text-muted-foreground">
-              <li className="hover:text-primary transition-smooth cursor-pointer">Internet Rumah</li>
-              <li className="hover:text-primary transition-smooth cursor-pointer">Dedicated Line</li>
-              <li className="hover:text-primary transition-smooth cursor-pointer">Colocation</li>
+              <li className="hover:text-primary transition-smooth cursor-pointer">
+                Internet Rumah
+              </li>
+              <li className="hover:text-primary transition-smooth cursor-pointer">
+                Dedicated Line
+              </li>
+              <li className="hover:text-primary transition-smooth cursor-pointer">
+                Colocation
+              </li>
             </ul>
           </div>
 
@@ -41,10 +47,18 @@ const Footer = () => {
           <div className="space-y-4">
             <h3 className="text-lg font-semibold">Bantuan</h3>
             <ul className="space-y-2 text-muted-foreground">
-              <li className="hover:text-primary transition-smooth cursor-pointer">Customer Care</li>
-              <li className="hover:text-primary transition-smooth cursor-pointer">FAQ</li>
-              <li className="hover:text-primary transition-smooth cursor-pointer">Panduan Instalasi</li>
-              <li className="hover:text-primary transition-smooth cursor-pointer">Speed Test</li>
+              <li className="hover:text-primary transition-smooth cursor-pointer">
+                Customer Care
+              </li>
+              <li className="hover:text-primary transition-smooth cursor-pointer">
+                FAQ
+              </li>
+              <li className="hover:text-primary transition-smooth cursor-pointer">
+                Panduan Instalasi
+              </li>
+              <li className="hover:text-primary transition-smooth cursor-pointer">
+                Speed Test
+              </li>
             </ul>
           </div>
 
@@ -53,24 +67,29 @@ const Footer = () => {
             <h3 className="text-lg font-semibold">Kontak</h3>
             <ul className="space-y-2 text-muted-foreground">
               <li>
-                <strong>Telepon:</strong><br />
+                <strong>Telepon:</strong>
+                <br />
                 0881-8618-157
               </li>
               <li>
-                <strong>Email:</strong><br />
+                <strong>Email:</strong>
+                <br />
                 FibernetKlaten@gmail.com
               </li>
               <li>
-                <strong>Alamat:</strong><br />
-                Jl. Dewi Sartika No.16, RT.03/RW.04<br />
-                Tegalklaten, Klaten, Kec. Klaten Tengah, Kabupaten Klaten, Jawa Tengah 57411
+                <strong>Alamat:</strong>
+                <br />
+                Jl. Dewi Sartika No.16, RT.03/RW.04
+                <br />
+                Tegalklaten, Klaten, Kec. Klaten Tengah, Kabupaten Klaten, Jawa
+                Tengah 57411
               </li>
             </ul>
           </div>
         </div>
 
         <div className="border-t border-border mt-12 pt-8 text-center text-muted-foreground">
-          <p>&copy; 2024 FiberNet. Semua hak cipta dilindungi.</p>
+          <p>&copy; 2026 FiberNet. Semua hak cipta dilindungi.</p>
         </div>
       </div>
     </footer>
