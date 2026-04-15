@@ -6,7 +6,7 @@ import {
 } from "@/components/ui/tooltip";
 
 const FloatingButtons = () => {
-  const waNumber = "6281234567890"; // Ganti nomor WA lu (tanpa +)
+  const waNumber = "62818618157"; // Ganti nomor WA lu (tanpa +)
   const waMessage = "Halo! Saya mau tanya tentang paket internetnya.";
   const telegramUsername = "usernamekamu"; // Ganti username Telegram lu (tanpa @)
 

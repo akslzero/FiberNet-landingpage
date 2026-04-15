@@ -31,40 +31,22 @@ const ContactForm = () => {
     message: "",
   });
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    const botToken = import.meta.env.VITE_TELEGRAM_BOT_TOKEN;
-    const chatId = import.meta.env.VITE_TELEGRAM_CHAT_ID;
+    setFormData({
+      name: "",
+      email: "",
+      phone: "",
+      address: "",
+      package: "",
+      message: "",
+    });
 
-    const message = `
-📬 *Pendaftaran Baru!*
-👤 Nama: ${formData.name}
-📱 Telepon: ${formData.phone}
-📧 Email: ${formData.email}
-🏠 Alamat: ${formData.address}
-📦 Paket: ${formData.package}
-📝 Pesan: ${formData.message || "-"}
-  `;
-
-    try {
-      await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          chat_id: chatId,
-          text: message,
-          parse_mode: "Markdown",
-        }),
-      });
-
-      alert("Data berhasil dikirim!");
-    } catch (error) {
-      console.error("Gagal kirim:", error);
-      alert("Ups, gagal kirim pesan");
-    }
+    toast({
+      title: "Formulir terkirim!",
+      description: "Data berhasil terkirim.",
+    });
   };
 
   const handleInputChange = (field: string, value: string) => {
